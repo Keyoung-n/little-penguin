@@ -1,0 +1,18 @@
+Sep 14 16:00:21 +02:00 (none)  Mounting virtual file systems: /run /proc /sys OK
+Sep 14 16:00:21 +02:00 (none)  Bringing up the loopback interface... OK
+Sep 14 16:00:21 +02:00 (none)  Setting hostname to knage... OK
+Sep 14 16:00:21 +02:00 knage  Populating /dev with device nodes...  OK
+Sep 14 16:00:23 +02:00 knage  Activating all swap files/partitions... OK
+Sep 14 16:00:23 +02:00 knage  Mounting root file system in read-only mode...  OK
+Sep 14 16:00:23 +02:00 knage  Checking file systems... OK
+Sep 14 16:00:23 +02:00 knage  Remounting root file system in read-write mode... OK
+Sep 14 16:00:23 +02:00 knage  Mounting remaining file systems... OK
+Sep 14 16:00:23 +02:00 knage  Cleaning file systems: /tmp OK
+Sep 14 16:00:23 +02:00 knage  Retrying failed uevents, if any... OK
+Sep 14 16:00:24 +02:00 knage  Setting up Linux console... OK
+Sep 14 16:00:24 +02:00 knage  Starting system log daemon... OK
+Sep 14 16:00:24 +02:00 knage  Starting kernel log daemon... OK
+Sep 14 16:00:24 +02:00 knage  Bringing up the eth0 interface... Sep 14 16:00:24 +02:00 knage  
+     Starting dhclient on the enp0s3 interface... OK
+Sep 14 16:00:24 +02:00 knage  You need to configure dhcp server in /etc/sysconfig/dhcpd WARN
+--------
