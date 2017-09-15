@@ -1,1 +1,0 @@
-cmd_/root/little-penguin/Assignment-01/helloworld.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /root/little-penguin/Assignment-01/helloworld.ko /root/little-penguin/Assignment-01/helloworld.o /root/little-penguin/Assignment-01/helloworld.mod.o ;  true

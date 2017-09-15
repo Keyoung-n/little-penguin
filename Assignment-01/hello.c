@@ -3,12 +3,12 @@
 #include <linux/init.h>      // included for __init and __exit macros
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Lakshmanan");
+MODULE_AUTHOR("Knage");
 MODULE_DESCRIPTION("A Simple Hello World module");
 
 static int __init hello_init(void)
 {
-    printk(KERN_INFO "Hello world!\n");
+    printk(KERN_NOTICE "Hello world !\n");
     return 0;    // Non-zero return means that the module couldn't be loaded.
 }
 
