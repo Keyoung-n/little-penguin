@@ -322,3 +322,111 @@ Sep 18 10:26:28 +02:00 knage  Bringing up the eth0 interface... Sep 18 10:26:28 
      Starting dhclient on the enp0s3 interface... OK
 Sep 18 10:26:28 +02:00 knage  You need to configure dhcp server in /etc/sysconfig/dhcpd WARN
 --------
+Sep 18 12:08:25 +02:00 (none)  Mounting virtual file systems: /run /proc /sys OK
+Sep 18 12:08:25 +02:00 (none)  Bringing up the loopback interface... OK
+Sep 18 12:08:25 +02:00 (none)  Setting hostname to knage... OK
+Sep 18 12:08:25 +02:00 knage  Populating /dev with device nodes...  OK
+Sep 18 12:08:27 +02:00 knage  Activating all swap files/partitions... OK
+Sep 18 12:08:27 +02:00 knage  Mounting root file system in read-only mode...  OK
+Sep 18 12:08:27 +02:00 knage  Checking file systems... OK
+Sep 18 12:08:27 +02:00 knage  Remounting root file system in read-write mode... OK
+Sep 18 12:08:27 +02:00 knage  Mounting remaining file systems... OK
+Sep 18 12:08:27 +02:00 knage  Cleaning file systems: /tmp OK
+Sep 18 12:08:27 +02:00 knage  Retrying failed uevents, if any... OK
+Sep 18 12:08:28 +02:00 knage  Setting up Linux console... OK
+Sep 18 12:08:28 +02:00 knage  Starting system log daemon... OK
+Sep 18 12:08:28 +02:00 knage  Starting kernel log daemon... OK
+Sep 18 12:08:28 +02:00 knage  Bringing up the eth0 interface... Sep 18 12:08:28 +02:00 knage  
+     Starting dhclient on the enp0s3 interface... OK
+Sep 18 12:08:28 +02:00 knage  You need to configure dhcp server in /etc/sysconfig/dhcpd WARN
+--------
+Sep 18 12:21:31 +02:00 (none)  Mounting virtual file systems: /run /proc /sys OK
+Sep 18 12:21:31 +02:00 (none)  Bringing up the loopback interface... OK
+Sep 18 12:21:31 +02:00 (none)  Setting hostname to knage... OK
+Sep 18 12:21:31 +02:00 knage  Populating /dev with device nodes...  OK
+Sep 18 12:21:33 +02:00 knage  Activating all swap files/partitions... OK
+Sep 18 12:21:33 +02:00 knage  Mounting root file system in read-only mode...  OK
+Sep 18 12:21:33 +02:00 knage  Checking file systems... OK
+Sep 18 12:21:33 +02:00 knage  Remounting root file system in read-write mode... OK
+Sep 18 12:21:33 +02:00 knage  Mounting remaining file systems... OK
+Sep 18 12:21:33 +02:00 knage  Cleaning file systems: /tmp OK
+Sep 18 12:21:33 +02:00 knage  Retrying failed uevents, if any... OK
+Sep 18 12:21:34 +02:00 knage  Setting up Linux console... OK
+Sep 18 12:21:34 +02:00 knage  Starting system log daemon... OK
+Sep 18 12:21:34 +02:00 knage  Starting kernel log daemon... OK
+Sep 18 12:21:34 +02:00 knage  Bringing up the eth0 interface... Sep 18 12:21:34 +02:00 knage  
+     Starting dhclient on the enp0s3 interface... OK
+Sep 18 12:21:37 +02:00 knage  You need to configure dhcp server in /etc/sysconfig/dhcpd WARN
+--------
+Sep 18 14:14:02 +02:00 (none)  Mounting virtual file systems: /run /proc /sys OK
+Sep 18 14:14:02 +02:00 (none)  Bringing up the loopback interface... OK
+Sep 18 14:14:02 +02:00 (none)  Setting hostname to knage... OK
+Sep 18 14:14:02 +02:00 knage  Populating /dev with device nodes...  OK
+Sep 18 14:14:05 +02:00 knage  Activating all swap files/partitions... OK
+Sep 18 14:14:05 +02:00 knage  Mounting root file system in read-only mode...  OK
+Sep 18 14:14:05 +02:00 knage  Checking file systems... OK
+Sep 18 14:14:05 +02:00 knage  Remounting root file system in read-write mode... OK
+Sep 18 14:14:05 +02:00 knage  Mounting remaining file systems... OK
+Sep 18 14:14:05 +02:00 knage  Cleaning file systems: /tmp OK
+Sep 18 14:14:05 +02:00 knage  Retrying failed uevents, if any... OK
+Sep 18 14:14:06 +02:00 knage  Setting up Linux console... OK
+Sep 18 14:14:06 +02:00 knage  Starting system log daemon... OK
+Sep 18 14:14:06 +02:00 knage  Starting kernel log daemon... OK
+Sep 18 14:14:06 +02:00 knage  Bringing up the eth0 interface... Sep 18 14:14:06 +02:00 knage  
+     Starting dhclient on the enp0s3 interface... OK
+Sep 18 14:14:13 +02:00 knage  You need to configure dhcp server in /etc/sysconfig/dhcpd WARN
+--------
+Sep 18 14:18:02 +02:00 (none)  Mounting virtual file systems: /run /proc /sys OK
+Sep 18 14:18:02 +02:00 (none)  Bringing up the loopback interface... OK
+Sep 18 14:18:02 +02:00 (none)  Setting hostname to knage... OK
+Sep 18 14:18:02 +02:00 knage  Populating /dev with device nodes...  OK
+Sep 18 14:18:04 +02:00 knage  Activating all swap files/partitions... OK
+Sep 18 14:18:04 +02:00 knage  Mounting root file system in read-only mode...  OK
+Sep 18 14:18:04 +02:00 knage  Checking file systems... OK
+Sep 18 14:18:04 +02:00 knage  Remounting root file system in read-write mode... OK
+Sep 18 14:18:04 +02:00 knage  Mounting remaining file systems... OK
+Sep 18 14:18:04 +02:00 knage  Cleaning file systems: /tmp OK
+Sep 18 14:18:04 +02:00 knage  Retrying failed uevents, if any... OK
+Sep 18 14:18:05 +02:00 knage  Setting up Linux console... OK
+Sep 18 14:18:05 +02:00 knage  Starting system log daemon... OK
+Sep 18 14:18:05 +02:00 knage  Starting kernel log daemon... OK
+Sep 18 14:18:05 +02:00 knage  Bringing up the eth0 interface... Sep 18 14:18:05 +02:00 knage  
+     Starting dhclient on the enp0s3 interface... OK
+Sep 18 14:18:10 +02:00 knage  You need to configure dhcp server in /etc/sysconfig/dhcpd WARN
+--------
+Sep 18 14:51:02 +02:00 (none)  Mounting virtual file systems: /run /proc /sys OK
+Sep 18 14:51:02 +02:00 (none)  Bringing up the loopback interface... OK
+Sep 18 14:51:02 +02:00 (none)  Setting hostname to knage... OK
+Sep 18 14:51:02 +02:00 knage  Populating /dev with device nodes...  OK
+Sep 18 14:51:05 +02:00 knage  Activating all swap files/partitions... OK
+Sep 18 14:51:05 +02:00 knage  Mounting root file system in read-only mode...  OK
+Sep 18 14:51:05 +02:00 knage  Checking file systems... OK
+Sep 18 14:51:05 +02:00 knage  Remounting root file system in read-write mode... OK
+Sep 18 14:51:05 +02:00 knage  Mounting remaining file systems... OK
+Sep 18 14:51:05 +02:00 knage  Cleaning file systems: /tmp OK
+Sep 18 14:51:05 +02:00 knage  Retrying failed uevents, if any... OK
+Sep 18 14:51:06 +02:00 knage  Setting up Linux console... OK
+Sep 18 14:51:06 +02:00 knage  Starting system log daemon... OK
+Sep 18 14:51:06 +02:00 knage  Starting kernel log daemon... OK
+Sep 18 14:51:06 +02:00 knage  Bringing up the eth0 interface... Sep 18 14:51:06 +02:00 knage  
+     Starting dhclient on the enp0s3 interface... OK
+Sep 18 14:51:14 +02:00 knage  You need to configure dhcp server in /etc/sysconfig/dhcpd WARN
+--------
+Sep 18 15:13:46 +02:00 (none)  Mounting virtual file systems: /run /proc /sys OK
+Sep 18 15:13:46 +02:00 (none)  Bringing up the loopback interface... OK
+Sep 18 15:13:46 +02:00 (none)  Setting hostname to knage... OK
+Sep 18 15:13:46 +02:00 knage  Populating /dev with device nodes...  OK
+Sep 18 15:13:48 +02:00 knage  Activating all swap files/partitions... OK
+Sep 18 15:13:48 +02:00 knage  Mounting root file system in read-only mode...  OK
+Sep 18 15:13:48 +02:00 knage  Checking file systems... OK
+Sep 18 15:13:48 +02:00 knage  Remounting root file system in read-write mode... OK
+Sep 18 15:13:48 +02:00 knage  Mounting remaining file systems... OK
+Sep 18 15:13:48 +02:00 knage  Cleaning file systems: /tmp OK
+Sep 18 15:13:48 +02:00 knage  Retrying failed uevents, if any... OK
+Sep 18 15:13:49 +02:00 knage  Setting up Linux console... OK
+Sep 18 15:13:49 +02:00 knage  Starting system log daemon... OK
+Sep 18 15:13:49 +02:00 knage  Starting kernel log daemon... OK
+Sep 18 15:13:49 +02:00 knage  Bringing up the eth0 interface... Sep 18 15:13:49 +02:00 knage  
+     Starting dhclient on the enp0s3 interface... OK
+Sep 18 15:13:57 +02:00 knage  You need to configure dhcp server in /etc/sysconfig/dhcpd WARN
+--------
