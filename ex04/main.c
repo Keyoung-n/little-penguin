@@ -9,8 +9,10 @@ MODULE_AUTHOR("Knage");
 MODULE_DESCRIPTION("A Simple Hello World module");
 
 static struct usb_device_id keyboard_table [] = {
-        { USB_DEVICE(USB_keyboard_VENDOR_ID, USB_keyboard_PRODUCT_ID) },
-        { }
+        { USB_INFO(USB_INTERFACE_CLASS_HID,
+		   USB_INTERFACE_SUBCLASS_BOOT,
+		   USE_INTERFACE_PROTOCOL_KEYBOARD) },
+	{}
 };
 MODULE_DEVICE_TABLE (usb, keyboard_table);
 
