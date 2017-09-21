@@ -23,6 +23,7 @@ static ssize_t misc_read(struct file *file, const char __user *buf, size_t len, 
 }
 
 static const struct file_operations misc_fops = {
+  .owner    =  misc,
   .open     =  misc_open,
   .read     =  misc_read,
   .release  =  misc_close,
@@ -33,14 +34,13 @@ struct miscdevice misc_device = {
   .minor = MISC_DYNAMIC_MINOR,
   .name  = "fortytwo",
   .fops  = misc_fops
-}
+};
 
 static int __init misc_init(void)
 {
-	if (misc_register(&sample_device) >= 0)
+	if (misc_register(&misc_device) >= 0)
 		printk(KERN_NOTICE "Misc device registered");
-
-        return 0;
+  return 0;
 }
 module_init(misc_init);
 
