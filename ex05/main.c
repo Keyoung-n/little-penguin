@@ -33,15 +33,17 @@ struct misdevice misc_device = {
   .fops  = misc_fops
 }
 
-static int __init misc_init(void) {
-  if (misc_register(&sample_device))
-    printk(KERN_NOTICE "Hey!\n");
-  return (0);
-}
+static int __init misc_init(void)
+{
+	if (misc_register(&sample_device) >= 0)
+		printk(KERN_NOTICE "Misc device registered");
 
-static void __exit misc_exit(void) {
-  misc_deregister(&misc_device);
-  printk(KERN_NOTICE "Bye\n");
+        return 0;
 }
-module_init(misc_init)
-module_exit(misc_exit)
+module_init(misc_init);
+
+static void __exit misc_exit(void)
+{
+      misc_deregister(&misc_device);
+}
+module_exit(misc_exit);
