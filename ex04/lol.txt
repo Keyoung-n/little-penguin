@@ -1,0 +1,26 @@
+make -C /lib/modules/4.14.0-rc1-thor_kernel-knage+/build M=/root/little-penguin/ex04 modules
+make[1]: Entering directory '/root/linux'
+  CC [M]  /root/little-penguin/ex04/main.o
+/root/little-penguin/ex04/main.c: In function 'usb_keyboard_init':
+/root/little-penguin/ex04/main.c:42:17: error: implicit declaration of function 'err' [-Werror=implicit-function-declaration]
+                 err("usb_register failed for the "__FILE__ "driver."
+                 ^~~
+In file included from ./include/linux/printk.h:6:0,
+                 from ./include/linux/kernel.h:13,
+                 from ./include/linux/list.h:8,
+                 from ./include/linux/module.h:9,
+                 from /root/little-penguin/ex04/main.c:1:
+./include/linux/kern_levels.h:4:18: warning: too many arguments for format [-Wformat-extra-args]
+ #define KERN_SOH "\001"  /* ASCII Start Of Header */
+                  ^
+./include/linux/kern_levels.h:12:21: note: in expansion of macro 'KERN_SOH'
+ #define KERN_NOTICE KERN_SOH "5" /* normal but significant condition */
+                     ^~~~~~~~
+/root/little-penguin/ex04/main.c:47:10: note: in expansion of macro 'KERN_NOTICE'
+   printk(KERN_NOTICE, "Keyboard registered");
+          ^~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[2]: *** [scripts/Makefile.build:318: /root/little-penguin/ex04/main.o] Error 1
+make[1]: *** [Makefile:1498: _module_/root/little-penguin/ex04] Error 2
+make[1]: Leaving directory '/root/linux'
+make: *** [Makefile:4: all] Error 2
