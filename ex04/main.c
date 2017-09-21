@@ -1,21 +1,55 @@
 #include <linux/module.h>    // included for all kernel modules
 #include <linux/kernel.h>    // included for KERN_INFO
 #include <linux/init.h>      // included for __init and __exit macros
+#include <linux/usb>
+#include <linux/usb.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Knage");
 MODULE_DESCRIPTION("A Simple Hello World module");
 
-static int __init hello_init(void)
-{
-    printk(KERN_NOTICE "Hello world !\n");
-    return 0;    // Non-zero return means that the module couldn't be loaded.
+static struct usb_device_id keyboard_table [] = {
+        { USB_DEVICE(USB_keyboard_VENDOR_ID, USB_keyboard_PRODUCT_ID) },
+        { }
+};
+MODULE_DEVICE_TABLE (usb, keyboard_table);
+
+static struct usb_driver keyboard_driver = {
+	.name        = "keyboard",
+	.probe       = keyboard_probe,
+	.disconnect  = keyboard_disconnect,
+	.id_table    = keyboard_table,
+};
+
+static int keyboard_probe(struct usb_interface *interface, \
+		      const struct usb_device_id *id) {
+	printk(KERN_NOTICE "Hello world !\n");
 }
 
-static void __exit hello_cleanup(void)
+static int __init usb_keyboard_init(void)
 {
-    printk(KERN_INFO "Cleaning up module.\n");
+        int result;
+
+        result = usb_register(&keyboard_driver);
+        if (result < 0) {
+                err("usb_register failed for the "__FILE__ "driver."
+                    "Error number %d", result);
+                return -1;
+        }
+	else
+		printk(KERN_NOTICE, "Keyboard registered");
+
+        return 0;
 }
 
-module_init(hello_init);
-module_exit(hello_cleanup);
+module_init(usb_keyboard_init);
+
+static void keyboard_disconnect(void) {
+}
+
+static void __exit usb_keyboard_exit(void)
+{
+        usb_deregister(&keyboard_driver);
+}
+
+module_exit(usb_keyboard_exit);
