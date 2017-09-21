@@ -16,7 +16,7 @@ static int misc_close(struct inode *inodep, struct file *filp) {
   return 0;
 }
 
-static ssize_t misc_read(struct file *file, const char _user *buf, size_t len, loff_t *pppos) {
+static ssize_t misc_read(struct file *file, const char __user *buf, size_t len, loff_t *pppos) {
   printk(KERN_NOTICE "read!!\n");
 }
 
