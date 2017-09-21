@@ -2,6 +2,7 @@
 #include <linux/kernel.h>
 #include <linux/fs.h>
 #include <linux/miscdevice.h>
+#include <linux/init.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Knage");
@@ -18,6 +19,7 @@ static int misc_close(struct inode *inodep, struct file *filp) {
 
 static ssize_t misc_read(struct file *file, const char __user *buf, size_t len, loff_t *pppos) {
   printk(KERN_NOTICE "read!!\n");
+  return 0;
 }
 
 static const struct file_operations misc_fops = {
@@ -27,7 +29,7 @@ static const struct file_operations misc_fops = {
   .llseek   =  no_llseek,
 };
 
-struct misdevice misc_device = {
+struct miscdevice misc_device = {
   .minor = MISC_DYNAMIC_MINOR,
   .name  = "fortytwo",
   .fops  = misc_fops
