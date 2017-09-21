@@ -17,15 +17,14 @@ static int misc_close(struct inode *inodep, struct file *filp) {
   return 0;
 }
 
-static ssize_t misc_read(struct file *file, const char __user *buf, size_t len, loff_t *pppos) {
+static ssize_t misc_write(struct file *file, const char __user *buf, size_t len, loff_t *pppos) {
   printk(KERN_NOTICE "read!!\n");
   return 0;
 }
 
 static const struct file_operations misc_fops = {
-  .owner    =  misc,
   .open     =  misc_open,
-  .read     =  misc_read,
+  .write    =  misc_write,
   .release  =  misc_close,
   .llseek   =  no_llseek,
 };
@@ -33,7 +32,7 @@ static const struct file_operations misc_fops = {
 struct miscdevice misc_device = {
   .minor = MISC_DYNAMIC_MINOR,
   .name  = "fortytwo",
-  .fops  = misc_fops
+  .fops  = &misc_fops
 };
 
 static int __init misc_init(void)
