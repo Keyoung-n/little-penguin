@@ -27,11 +27,15 @@ static ssize_t misc_write(struct file *file, const char __user *buf,
 	return -2;
 }
 
-static ssize_t misc_read(struct file *file, char *buf,
-  size_t len, loff_t *pppos)
+static ssize_t misc_read(struct file *filep, char *buf, size_t len, loff_t *offset)
 {
-  printk(KERN_NOTICE "reading!\n");
-  return 0;
+   if (copy_to_user(buf, "knage", 5)){
+      printk(KERN_INFO "sent message to user");
+      return (5);
+   }
+   else {
+      return -EFAULT;
+   }
 }
 
 static const struct file_operations misc_fops = {
