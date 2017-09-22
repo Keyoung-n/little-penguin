@@ -25,21 +25,18 @@ static ssize_t misc_write(struct file *file, const char __user *buf,
 	if (strncmp("knage", buf, 5) == 0) {
 		return 6;
 	}
-	return -2;
+	return -1;
 }
 
 static ssize_t misc_read(struct file *filep, char *buf, size_t len, loff_t *offset)
 {
-	int error_count = 0;
-	memset(buf, 0, 10);
-	char *login = "knage";
-  ssize_t bytes = len < (5-(*offset)) ? len : (5-(*offset));
-	error_count = copy_to_user(buf, login, 6);
-	if (error_count == 0) {
+	char *login = "knage\n";
+	ssize_t bytes = len < (6-(*offset)) ? len : (6-(*offset));
+	if (copy_to_user(buf, login, bytes)) {
 		return -EFAULT;
 	}
-  (*offset) += bytes;
-  return bytes;
+	(*offset) += bytes;
+	return bytes;
 }
 
 static const struct file_operations misc_fops = {
