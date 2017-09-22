@@ -3,13 +3,13 @@
 #include <linux/fs.h>
 #include <linux/miscdevice.h>
 #include <linux/init.h>
+#include <linux/string.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Knage");
 MODULE_DESCRIPTION("Fortytwo misc device driver.");
 
 static int misc_open(struct inode *inode, struct file *file) {
-  printk(KERN_NOTICE "open!!\n");
   return 0;
 }
 
@@ -20,23 +20,27 @@ static int misc_close(struct inode *inodep, struct file *filp) {
 static ssize_t misc_write(struct file *file, const char __user *buf,
   size_t len, loff_t *pppos)
 {
-  return 0;
+	printk(KERN_NOTICE "buf == %s.\n", buf);
+	if (strncmp("knage", buf, 5) == 0) {
+		return 6;
+	}
+	return -2;
 }
 
-static ssize_t misc_read(struct file *file, const char __user *buf,
+static ssize_t misc_read(struct file *file, char *buf,
   size_t len, loff_t *pppos)
 {
-  printk(KERN_NOTICE "knage\n");
+  printk(KERN_NOTICE "reading!\n");
   return 0;
 }
 
 static const struct file_operations misc_fops = {
-  .owner		=  THIS_MODULE,
-  .open     =  misc_open,
-  .write    =  misc_write,
-  .read     =  misc_read,
-  .release  =  misc_close,
-  .llseek   =  no_llseek,
+	.owner	  =  THIS_MODULE,
+	.open     =  misc_open,
+	.write    =  misc_write,
+	.read     =  misc_read,
+	.release  =  misc_close,
+	.llseek   =  no_llseek,
 };
 
 struct miscdevice misc_device = {
