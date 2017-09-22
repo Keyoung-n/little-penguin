@@ -33,11 +33,13 @@ static ssize_t misc_read(struct file *filep, char *buf, size_t len, loff_t *offs
 	int error_count = 0;
 	memset(buf, 0, 10);
 	char *login = "knage";
+  ssize_t bytes = len < (5-(*offset)) ? len : (5-(*offset));
 	error_count = copy_to_user(buf, login, 6);
 	if (error_count == 0) {
 		return -EFAULT;
 	}
-	return (5);
+  (*offset) += bytes;
+  return bytes;
 }
 
 static const struct file_operations misc_fops = {
