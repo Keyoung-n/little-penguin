@@ -23,7 +23,7 @@ static int id_close(struct inode *inodep, struct file *filp) {
 }
 
 static ssize_t id_write(struct file *file, const char __user *buf,
-			  size_t len, loff_t *pppos)
+			size_t len, loff_t *pppos)
 {
 	if (strncmp("knage", buf, 5) == 0) {
 		return 6;
@@ -76,7 +76,7 @@ static const struct file_operations jiffies_fops = {
 };
 
 // -----------------------------------------------------------------------------
-char *
+
 static int foo_open(struct inode *inode, struct file *file) {
 	return 0;
 }
@@ -86,11 +86,11 @@ static int foo_close(struct inode *inodep, struct file *filp) {
 }
 
 static ssize_t foo_write(struct file *file, const char __user *buf,
-			  size_t len, loff_t *pppos)
+			 size_t len, loff_t *pppos)
 {
-  res = 0;
-  res = simple_write_to_buffer(buf, len, ppppos, user, len) + 1;
-  buff[size + 1] = '\0';
+	ssize_t res = 0;
+	res = simple_write_to_buffer(buf, len, pppos, user, len) + 1;
+	buf[len + 1] = 0x0;
 	return res;
 }
 
@@ -111,22 +111,22 @@ static const struct file_operations foo_fops = {
 // -----------------------------------------------------------------------------
 static int __init hello_init(void)
 {
-    fortytwo_dir = debugfs_create_dir("fortytwo", NULL);
-    if (!fortytwo_dir) {
-      printk(KERN_INFO "Failed to create dir.\n");
-      return 0;
-    }
+	fortytwo_dir = debugfs_create_dir("fortytwo", NULL);
+	if (!fortytwo_dir) {
+		printk(KERN_INFO "Failed to create dir.\n");
+		return 0;
+	}
 
-    debugfs_create_file("id", 0666, fortytwo_dir, NULL, &id_fops);
-    debugfs_create_file("jiffies", 0444, fortytwo_dir, NULL, &jiffies_fops);
-    debugfs_create_file("foo", 0644, fortytwo_dir, NULL, &foo_fops);
-    return 0;
+	debugfs_create_file("id", 0666, fortytwo_dir, NULL, &id_fops);
+	debugfs_create_file("jiffies", 0444, fortytwo_dir, NULL, &jiffies_fops);
+	debugfs_create_file("foo", 0644, fortytwo_dir, NULL, &foo_fops);
+	return 0;
 }
 
 static void __exit hello_cleanup(void)
 {
-    debugfs_remove_recursive(fortytwo_dir);
-    debugfs_remove(fortytwo_dir);
+	debugfs_remove_recursive(fortytwo_dir);
+	debugfs_remove(fortytwo_dir);
 }
 
 module_init(hello_init);
