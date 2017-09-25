@@ -21,7 +21,6 @@ static int misc_close(struct inode *inodep, struct file *filp) {
 static ssize_t misc_write(struct file *file, const char __user *buf,
 			  size_t len, loff_t *pppos)
 {
-	printk(KERN_NOTICE "buf == %s.\n", buf);
 	if (strncmp("knage", buf, 5) == 0) {
 		return 6;
 	}
@@ -30,8 +29,8 @@ static ssize_t misc_write(struct file *file, const char __user *buf,
 
 static ssize_t misc_read(struct file *filep, char *buf, size_t len, loff_t *offset)
 {
-	char *login = "knage\n";
-	ssize_t bytes = len < (6-(*offset)) ? len : (6-(*offset));
+	char *login = "knage";
+	ssize_t bytes = len < (5-(*offset)) ? len : (5-(*offset));
 	if (copy_to_user(buf, login, bytes)) {
 		return -EFAULT;
 	}
