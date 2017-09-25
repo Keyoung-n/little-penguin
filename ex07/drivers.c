@@ -7,7 +7,6 @@
 #include <linux/uaccess.h>
 #include <linux/debugfs.h>
 #include <linux/timer.h>
-#include <linux/stdlib.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Knage");
@@ -63,14 +62,9 @@ static int jiffies_close(struct inode *inodep, struct file *filp) {
 
 static ssize_t jiffies_read(struct file *filep, char *buf, size_t len, loff_t *offset)
 {
-	char *login = "knage";
-  printk(KERN_INFO "\n[Jiffies start Time : %lu]\nModule Started.\n", jiffies);
-	ssize_t bytes = len < (5-(*offset)) ? len : (5-(*offset));
-	if (copy_to_user(buf, login, bytes)) {
-		return -EFAULT;
-	}
-	(*offset) += bytes;
-	return bytes;
+	char jif_char[10];
+	sprintf(jif_char, "%ld", jiffies);
+	return simple_read_from_buffer(buf, len, offset, jif_char, 10);
 }
 
 static const struct file_operations jiffies_fops = {
@@ -99,7 +93,7 @@ static int __init hello_init(void)
 static void __exit hello_cleanup(void)
 {
     debugfs_remove_recursive(fortytwo_dir);
-    debugfs_remove(fortytwo_dirs);
+    debugfs_remove(fortytwo_dir);
 }
 
 module_init(hello_init);
