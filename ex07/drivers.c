@@ -89,7 +89,8 @@ static ssize_t foo_write(struct file *file, const char __user *buf,
 			 size_t len, loff_t *pppos)
 {
 	ssize_t res = 0;
-	res = simple_write_to_buffer(buf, len, pppos, user, len) + 1;
+  char *str = kmalloc(len, GFP_KERNEL);
+	res = simple_write_to_buffer(buff, len, pppos, user, len) + 1;
 	buf[len + 1] = 0x0;
 	return res;
 }
