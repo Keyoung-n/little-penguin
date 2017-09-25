@@ -6,6 +6,8 @@
 #include <linux/string.h>
 #include <linux/uaccess.h>
 #include <linux/debugfs.h>
+#include <linux/timer.h>
+#include <linux/stdlib.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Knage");
@@ -49,10 +51,40 @@ static const struct file_operations id_fops = {
 	.release  =  id_close,
 	.llseek   =  no_llseek,
 };
+// -----------------------------------------------------------------------------
+
+static int jiffies_open(struct inode *inode, struct file *file) {
+	return 0;
+}
+
+static int jiffies_close(struct inode *inodep, struct file *filp) {
+	return 0;
+}
+
+static ssize_t jiffies_read(struct file *filep, char *buf, size_t len, loff_t *offset)
+{
+	char *login = "knage";
+  printk(KERN_INFO "\n[Jiffies start Time : %lu]\nModule Started.\n", jiffies);
+	ssize_t bytes = len < (5-(*offset)) ? len : (5-(*offset));
+	if (copy_to_user(buf, login, bytes)) {
+		return -EFAULT;
+	}
+	(*offset) += bytes;
+	return bytes;
+}
+
+static const struct file_operations jiffies_fops = {
+	.owner	  =  THIS_MODULE,
+	.open     =  jiffies_open,
+	.read     =  jiffies_read,
+	.release  =  jiffies_close,
+	.llseek   =  no_llseek,
+};
+
+// -----------------------------------------------------------------------------
 
 static int __init hello_init(void)
 {
-
     fortytwo_dir = debugfs_create_dir("fortytwo", NULL);
     if (!fortytwo_dir) {
       printk(KERN_INFO "Failed to create dir.\n");
@@ -60,12 +92,14 @@ static int __init hello_init(void)
     }
 
     debugfs_create_file("id", 0666, fortytwo_dir, NULL, &id_fops);
+    debugfs_create_file("jiffies", 0666, fortytwo_dir, NULL, &jiffies_fops);
     return 0;
 }
 
 static void __exit hello_cleanup(void)
 {
-    printk(KERN_INFO "Cleaning up module.\n");
+    debugfs_remove_recursive(fortytwo_dir);
+    debugfs_remove(fortytwo_dirs);
 }
 
 module_init(hello_init);
