@@ -76,7 +76,39 @@ static const struct file_operations jiffies_fops = {
 };
 
 // -----------------------------------------------------------------------------
+char *
+static int foo_open(struct inode *inode, struct file *file) {
+	return 0;
+}
 
+static int foo_close(struct inode *inodep, struct file *filp) {
+	return 0;
+}
+
+static ssize_t foo_write(struct file *file, const char __user *buf,
+			  size_t len, loff_t *pppos)
+{
+  res = 0;
+  res = simple_write_to_buffer(buf, len, ppppos, user, len) + 1;
+  buff[size + 1] = '\0';
+	return res;
+}
+
+static ssize_t foo_read(struct file *filep, char *buf, size_t len, loff_t *offset)
+{
+	return simple_read_from_buffer(buf, len, offset, buf, len);
+}
+
+static const struct file_operations foo_fops = {
+	.owner	  =  THIS_MODULE,
+	.open     =  foo_open,
+	.write    =  foo_write,
+	.read     =  foo_read,
+	.release  =  foo_close,
+	.llseek   =  no_llseek,
+};
+
+// -----------------------------------------------------------------------------
 static int __init hello_init(void)
 {
     fortytwo_dir = debugfs_create_dir("fortytwo", NULL);
@@ -86,7 +118,8 @@ static int __init hello_init(void)
     }
 
     debugfs_create_file("id", 0666, fortytwo_dir, NULL, &id_fops);
-    debugfs_create_file("jiffies", 0666, fortytwo_dir, NULL, &jiffies_fops);
+    debugfs_create_file("jiffies", 0444, fortytwo_dir, NULL, &jiffies_fops);
+    debugfs_create_file("foo", 0644, fortytwo_dir, NULL, &foo_fops);
     return 0;
 }
 
