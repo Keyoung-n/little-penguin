@@ -13,6 +13,7 @@ MODULE_AUTHOR("Knage");
 MODULE_DESCRIPTION("Fortytwo misc device driver.");
 
 static struct dentry *fortytwo_dir;
+char str[4096];
 
 static int id_open(struct inode *inode, struct file *file) {
 	return 0;
@@ -77,21 +78,11 @@ static const struct file_operations jiffies_fops = {
 
 // -----------------------------------------------------------------------------
 
-static int foo_open(struct inode *inode, struct file *file) {
-	return 0;
-}
-
-static int foo_close(struct inode *inodep, struct file *filp) {
-	return 0;
-}
-
 static ssize_t foo_write(struct file *file, const char __user *buf,
-			 size_t len, loff_t *pppos)
+			 size_t len, loff_t *offset)
 {
 	ssize_t res = 0;
-  char *str = kmalloc(len, GFP_KERNEL);
-	res = simple_write_to_buffer(buff, len, pppos, user, len) + 1;
-	buf[len + 1] = 0x0;
+	res = simple_write_to_buffer(str, 4096, offset, buf, sizeof(str));
 	return res;
 }
 
@@ -101,12 +92,8 @@ static ssize_t foo_read(struct file *filep, char *buf, size_t len, loff_t *offse
 }
 
 static const struct file_operations foo_fops = {
-	.owner	  =  THIS_MODULE,
-	.open     =  foo_open,
 	.write    =  foo_write,
 	.read     =  foo_read,
-	.release  =  foo_close,
-	.llseek   =  no_llseek,
 };
 
 // -----------------------------------------------------------------------------
