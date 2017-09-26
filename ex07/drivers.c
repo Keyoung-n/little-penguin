@@ -82,13 +82,14 @@ static ssize_t foo_write(struct file *file, const char __user *buf,
 			 size_t len, loff_t *offset)
 {
 	ssize_t res = 0;
-	res = simple_write_to_buffer(str, 4096, offset, buf, sizeof(str));
-	return res;
+	memset(str, 0, strlen(str));
+
+	return simple_write_to_buffer(str, 4096, offset, buf, len);
 }
 
 static ssize_t foo_read(struct file *filep, char *buf, size_t len, loff_t *offset)
 {
-	return simple_read_from_buffer(buf, len, offset, buf, len);
+	return simple_read_from_buffer(buf, len, offset, str, strlen(str));
 }
 
 static const struct file_operations foo_fops = {
