@@ -5,7 +5,7 @@
 #include <linux/fs.h>
 #include <linux/slab.h>
 
-MODULE_LICENSE("LICENSE");
+MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Louis Solofrizzo <louis@ne02ptzero.me>");
 MODULE_DESCRIPTION("Useless module");
 
@@ -26,7 +26,7 @@ static struct miscdevice myfd_device = {
 };
 
 char str[PAGE_SIZE];
-char *tmp;
+char *tmp = kmalloc(sizeof(char) * PAGE_SIZE, GFP_KERNEL);
 
 static int __init myfd_init(void) {
   if (misc_register(&myfd_device))
@@ -35,16 +35,14 @@ static int __init myfd_init(void) {
 }
 
 static void __exit myfd_cleanup(void) {
+  free(tmp);
   misc_deregister(&myfd_device);
 }
 
 ssize_t myfd_read(struct file *fp, char __user *user, size_t size, loff_t *offs)
 {
 	size_t t, i;
-	char *tmp2;
 
-	tmp2 = kmalloc(sizeof(char) * PAGE_SIZE * 2, GFP_KERNEL);
-	tmp = tmp2;
 	for (t = strlen(str) - 1, i = 0; t != -1; t--, i++) {
 		tmp[i] = str[t];
 	}
