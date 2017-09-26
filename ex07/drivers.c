@@ -1,12 +1,12 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/fs.h>
-#include <linux/miscdevice.h>
 #include <linux/init.h>
 #include <linux/string.h>
 #include <linux/uaccess.h>
 #include <linux/debugfs.h>
 #include <linux/timer.h>
+#include <linux/mutex.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Knage");
@@ -94,7 +94,7 @@ static ssize_t foo_read(struct file *filep, char *buf, size_t len, loff_t *offse
 {
 	ssize_t ret = 0;
 	mutex_lock(&cache_lock);
-	simple_read_from_buffer(buf, len, offset, str, strlen(str));
+	ret = simple_read_from_buffer(buf, len, offset, str, strlen(str));
 	mutex_unlock(&cache_lock);
 	return ret;
 }
