@@ -10,7 +10,7 @@
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Knage");
-MODULE_DESCRIPTION("Fortytwo misc device driver.");
+MODULE_DESCRIPTION("Fortytwo module.");
 
 static struct dentry *fortytwo_dir;
 static DEFINE_MUTEX(cache_lock);
@@ -52,7 +52,6 @@ static const struct file_operations id_fops = {
 	.release  =  id_close,
 	.llseek   =  no_llseek,
 };
-// -----------------------------------------------------------------------------
 
 static ssize_t jiffies_read(struct file *filep, char *buf, size_t len, loff_t *offset)
 {
@@ -65,7 +64,6 @@ static const struct file_operations jiffies_fops = {
 	.read     =  jiffies_read,
 };
 
-// -----------------------------------------------------------------------------
 
 static ssize_t foo_write(struct file *file, const char __user *buf,
 			 size_t len, loff_t *offset)
@@ -92,7 +90,6 @@ static const struct file_operations foo_fops = {
 	.read     =  foo_read,
 };
 
-// -----------------------------------------------------------------------------
 static int __init hello_init(void)
 {
 	fortytwo_dir = debugfs_create_dir("fortytwo", NULL);
