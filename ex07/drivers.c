@@ -54,14 +54,6 @@ static const struct file_operations id_fops = {
 };
 // -----------------------------------------------------------------------------
 
-static int jiffies_open(struct inode *inode, struct file *file) {
-	return 0;
-}
-
-static int jiffies_close(struct inode *inodep, struct file *filp) {
-	return 0;
-}
-
 static ssize_t jiffies_read(struct file *filep, char *buf, size_t len, loff_t *offset)
 {
 	char jif_char[10];
@@ -70,11 +62,7 @@ static ssize_t jiffies_read(struct file *filep, char *buf, size_t len, loff_t *o
 }
 
 static const struct file_operations jiffies_fops = {
-	.owner	  =  THIS_MODULE,
-	.open     =  jiffies_open,
 	.read     =  jiffies_read,
-	.release  =  jiffies_close,
-	.llseek   =  no_llseek,
 };
 
 // -----------------------------------------------------------------------------
