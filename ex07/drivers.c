@@ -13,6 +13,7 @@ MODULE_AUTHOR("Knage");
 MODULE_DESCRIPTION("Fortytwo misc device driver.");
 
 static struct dentry *fortytwo_dir;
+static DEFINE_MUTEX(cache_lock);
 char str[4096];
 
 static int id_open(struct inode *inode, struct file *file) {
@@ -82,14 +83,20 @@ static ssize_t foo_write(struct file *file, const char __user *buf,
 			 size_t len, loff_t *offset)
 {
 	ssize_t res = 0;
+	mutex_lock(&cache_lock);
 	memset(str, 0, strlen(str));
-
-	return simple_write_to_buffer(str, 4096, offset, buf, len);
+	res = simple_write_to_buffer(str, 4096, offset, buf, len);
+	mutex_unlock(&cache_lock);
+	return res;
 }
 
 static ssize_t foo_read(struct file *filep, char *buf, size_t len, loff_t *offset)
 {
-	return simple_read_from_buffer(buf, len, offset, str, strlen(str));
+	ssize_t ret = 0;
+	mutex_lock(&cache_lock);
+	simple_read_from_buffer(buf, len, offset, str, strlen(str));
+	mutex_unlock(&cache_lock);
+	return ret;
 }
 
 static const struct file_operations foo_fops = {
