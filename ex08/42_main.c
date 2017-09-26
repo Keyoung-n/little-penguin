@@ -15,13 +15,14 @@ static ssize_t myfd_write(struct file *fp, const char __user *user, size_t size,
 
 static struct file_operations myfd_fops = {
 	.owner = THIS_MODULE,
-  .read = &myfd_read,
-  .write = &myfd_write
+  .read  = myfd_read,
+  .write = myfd_write,
 };
 
 static struct miscdevice myfd_device = {
-	.minor = MISC_DYNAMIC_MINOR,.name = "reverse",
-	.fops = &myfd_fops
+	.minor = MISC_DYNAMIC_MINOR,
+  .name  = "reverse",
+	.fops  = &myfd_fops,
 };
 
 char str[PAGE_SIZE];
@@ -52,8 +53,7 @@ ssize_t myfd_read(struct file *fp, char __user *user, size_t size, loff_t *offs)
 }
 
 ssize_t myfd_write(struct file *fp, const char __user *user, size_t size, loff_t *offs) {
-	ssize_t res;
-	res = 0;
+	ssize_t res = 0;
 	res = simple_write_to_buffer(str, size, offs, user, size) + 1;
 	str[size + 1] = 0x0;
 	return res;
