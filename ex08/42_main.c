@@ -15,28 +15,27 @@ static ssize_t myfd_write(struct file *fp, const char __user *user, size_t size,
 
 static struct file_operations myfd_fops = {
 	.owner = THIS_MODULE,
-  .read  = myfd_read,
-  .write = myfd_write,
+	.read  = myfd_read,
+	.write = myfd_write,
 };
 
 static struct miscdevice myfd_device = {
 	.minor = MISC_DYNAMIC_MINOR,
-  .name  = "reverse",
+	.name  = "reverse",
 	.fops  = &myfd_fops,
 };
 
 char str[PAGE_SIZE];
-char *tmp = kmalloc(sizeof(char) * PAGE_SIZE, GFP_KERNEL);
+char tmp[PAGE_SIZE];
 
 static int __init myfd_init(void) {
-  if (misc_register(&myfd_device))
-    printk(KERN_ERR "Unable register misc device");
+	if (misc_register(&myfd_device))
+		printk(KERN_ERR "Unable register misc device");
 	return 0;
 }
 
 static void __exit myfd_cleanup(void) {
-  free(tmp);
-  misc_deregister(&myfd_device);
+	misc_deregister(&myfd_device);
 }
 
 ssize_t myfd_read(struct file *fp, char __user *user, size_t size, loff_t *offs)
