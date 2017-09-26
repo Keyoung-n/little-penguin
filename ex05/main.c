@@ -24,7 +24,7 @@ static ssize_t misc_write(struct file *file, const char __user *buf,
 	if (strncmp("knage", buf, 5) == 0) {
 		return 6;
 	}
-	return -1;
+	return -EFAULT;
 }
 
 static ssize_t misc_read(struct file *filep, char *buf, size_t len, loff_t *offset)
