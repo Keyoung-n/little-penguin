@@ -4,8 +4,8 @@
 #include <linux/slab.h>
 
 /*
- * This function sleeps for set amount of time, if long enough it tells the user
- * space about it.
+ * This function sleeps for set amount of time,
+ * if long enough it tells the user space about it.
  */
 int do_work(int *my_int, int retval)
 {

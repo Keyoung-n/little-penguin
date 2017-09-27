@@ -27,7 +27,8 @@ static ssize_t misc_write(struct file *file, const char __user *buf,
 	return -EFAULT;
 }
 
-static ssize_t misc_read(struct file *filep, char *buf, size_t len, loff_t *offset)
+static ssize_t misc_read(struct file *filep, char *buf, size_t len, 
+			 loff_t *offset)
 {
 	char *login = "knage";
 	ssize_t bytes = len < (5-(*offset)) ? len : (5-(*offset));

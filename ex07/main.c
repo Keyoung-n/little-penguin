@@ -33,7 +33,8 @@ static ssize_t id_write(struct file *file, const char __user *buf,
 	return -EFAULT;
 }
 
-static ssize_t id_read(struct file *filep, char *buf, size_t len, loff_t *offset)
+static ssize_t id_read(struct file *filep, char *buf, size_t len,
+		       loff_t *offset)
 {
 	char *login = "knage";
 	ssize_t bytes = len < (5-(*offset)) ? len : (5-(*offset));
@@ -53,7 +54,8 @@ static const struct file_operations id_fops = {
 	.llseek   =  no_llseek,
 };
 
-static ssize_t jiffies_read(struct file *filep, char *buf, size_t len, loff_t *offset)
+static ssize_t jiffies_read(struct file *filep, char *buf, size_t len,
+			    loff_t *offset)
 {
 	char jif_char[10];
 	sprintf(jif_char, "%ld", jiffies);
@@ -76,7 +78,8 @@ static ssize_t foo_write(struct file *file, const char __user *buf,
 	return res;
 }
 
-static ssize_t foo_read(struct file *filep, char *buf, size_t len, loff_t *offset)
+static ssize_t foo_read(struct file *filep, char *buf, size_t len,
+			loff_t *offset)
 {
 	ssize_t ret = 0;
 	mutex_lock(&cache_lock);
