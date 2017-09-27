@@ -6,7 +6,7 @@
 [  154.730964] main: loading out-of-tree module taints kernel.
 [  154.730985] main: module verification failed: signature and/or required key missing - tainting kernel
 [  154.731528] usbcore: registered new interface driver Universal USB keyboard Driver
-[  154.731528] Successfully loaded USB driver.
+[  154.731528] Keyboard registered
 [  156.562585] Hello World!
 [  164.150379] usb 1-2: new full-speed USB device number 3 using ohci-pci
 [  164.432243] usb 1-2: New USB device found, idVendor=258a, idProduct=0001
