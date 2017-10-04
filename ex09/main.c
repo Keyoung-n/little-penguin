@@ -12,13 +12,8 @@ struct proc_dir_entry *File;
 
 ssize_t read_proc(struct file *filp, char *buf, size_t len, loff_t *offp )
 {
-  char *login = "hello world";
-	ssize_t bytes = len < (11-(*offset)) ? len : (11-(*offset));
-	if (copy_to_user(buf, login, bytes)) {
-		return -EFAULT;
-	}
-	(*offset) += bytes;
-	return bytes;
+  char str[] = "hello world!\n";
+  return simple_read_from_buffer(buf, len, offset, str, strlen(str));
 }
 
 
