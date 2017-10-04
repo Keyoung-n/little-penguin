@@ -3,6 +3,10 @@
 #include <linux/proc_fs.h>
 #include <linux/uaccess.h>
 
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Knage");
+MODULE_DESCRIPTION("Fortytwo module.");
+
 struct proc_dir_entry *File;
 int temp = 0;
 #define file_name "mymounts"
