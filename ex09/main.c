@@ -8,21 +8,17 @@ MODULE_AUTHOR("Knage");
 MODULE_DESCRIPTION("Fortytwo module.");
 
 struct proc_dir_entry *File;
-int temp = 0, len = 0;
 #define file_name "mymounts"
 
-ssize_t read_proc(struct file *filp, char *buf, size_t count, loff_t *offp )
+ssize_t read_proc(struct file *filp, char *buf, size_t len, loff_t *offp )
 {
-  if(count>temp)
-  {
-  count=temp;
-  }
-  temp=temp-count;
-  copy_to_user(buf,msg, count);
-  if(count==0)
-  temp=len;
-
-  return count;
+  char *login = "hello world";
+	ssize_t bytes = len < (11-(*offset)) ? len : (11-(*offset));
+	if (copy_to_user(buf, login, bytes)) {
+		return -EFAULT;
+	}
+	(*offset) += bytes;
+	return bytes;
 }
 
 
