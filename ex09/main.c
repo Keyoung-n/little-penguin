@@ -3,36 +3,29 @@
 #include <linux/proc_fs.h>
 
 struct proc_dir_entry *File;
-#define file_name "mymounts"
-int procfile_read(char *buffer, char **buffer_location,
-	      off_t offset, int buffer_length, int *eof, void *data)
+
+int read_proc(struct file *filp, char *buf, size_t count, loff_t *offp )
 {
-	int ret;
+  if(count > temp)
+    count = temp;
+  temp -= count;
+  copy_to_user(buf, "hello world", count);
+  if(count == 0)
+    temp = len;
 
-  if (offset > 0)
-  		ret  = 0;
-  else
-      ret = sprintf(buffer, "Hello World!\n");
-
-	return ret;
+  return count;
 }
+
+return count;
+}
+
+struct file_operations proc_fops = {
+  read:  read_proc
+};
 
 int init_module()
 {
-	File = create_proc_entry(file_name, 0644, NULL);
-
-	if (File == NULL) {
-		remove_proc_entry(file_name, &proc_root);
-		printk(KERN_ALERT "Error: Could not initialize /proc/%s\n", file_name);
-		return -ENOMEM;
-	}
-
-	File->read_proc  = procfile_read;
-	File->owner 	   = THIS_MODULE;
-	File->mode 	     = S_IFREG | S_IRUGO;
-	File->uid 	     = 0;
-	File->gid 	     = 0;
-	File->size 	     = 37;
+	proc_create("mymounts", 0, NULL, &proc_fops);
 
 	return 0;
 }
