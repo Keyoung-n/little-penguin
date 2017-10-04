@@ -3,6 +3,7 @@
 #include <linux/proc_fs.h>
 
 struct proc_dir_entry *File;
+#define file_name "mymounts"
 
 int read_proc(struct file *filp, char *buf, size_t count, loff_t *offp )
 {
@@ -25,14 +26,14 @@ struct file_operations proc_fops = {
 
 int init_module()
 {
-	proc_create("mymounts", 0, NULL, &proc_fops);
+	proc_create(file_name, 0, NULL, &proc_fops);
 
 	return 0;
 }
 
 void cleanup_module()
 {
-	remove_proc_entry(file_name, &proc_root);
+	remove_proc_entry(file_name, NULL);
 }
 
 module_init(init_module);
