@@ -25,18 +25,21 @@ char *file_name = "mymounts";
 ssize_t read_proc(struct file *filp, char *buf, size_t len, loff_t *offp )
 {
 	struct dentry *curdentry;
-	printk("root      %s", current->fs->root.mnt->mnt_root->d_name.name);
-	list_for_each_entry(curdentry, &current->fs->root.mnt->mnt_root->d_subdirs, d_child)
+	printk("root   %s", current->fs->root.mnt->mnt_root->d_name.name);
+	list_for_each_entry(curdentry,
+			    &current->fs->root.mnt->mnt_root->d_subdirs,
+			    d_child)
 	{
 		if (curdentry->d_flags & DCACHE_MOUNTED)
-			printk("%s      /%s", curdentry->d_name.name, curdentry->d_name.name);
+			printk("%s    /%s", curdentry->d_name.name,
+					      curdentry->d_name.name);
 	}
 	return 0;
 }
 
 static int open_proc(struct inode *inode, struct file *file)
 {
-		return 0;
+	return 0;
 }
 
 struct file_operations proc_fops = {
@@ -47,7 +50,7 @@ struct file_operations proc_fops = {
 int proc_init(void)
 {
 	proc_create(file_name, 0, NULL, &proc_fops);
-	
+
 	return 0;
 }
 
@@ -59,7 +62,7 @@ void proc_cleanup(void)
 module_init(proc_init);
 module_exit(proc_cleanup);
 
-MODULE_DESCRIPTION("Misc device driver");
-MODULE_AUTHOR("Kcowle");
+MODULE_DESCRIPTION("Proc driver");
+MODULE_AUTHOR("Knage");
 MODULE_LICENSE("GPL");
 
