@@ -53,7 +53,7 @@ ssize_t myfd_read(struct file *fp, char __user *user, size_t size,
 		tmp[i] = str[t];
 	}
 	tmp[i] = 0x0;
-	return simple_read_from_buffer(user, size, offs, tmp, i) + 1;
+	return simple_read_from_buffer(user, size, offs, tmp, i);
 }
 
 ssize_t myfd_write(struct file *fp,
